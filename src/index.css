@@ -1,13 +1,74 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.search {
+	min-height: 120px;
+	color: #fff;
+	line-height: 120px;
+	background: rgba(0, 255, 8, 0.16);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.ant-layout-footer {
+	line-height: 1.5;
+	background: #3ba0e9;
+}
+.ant-layout-header {
+	background: #3ba0e9;
+	/* height: 10vh; */
+}
+.ant-layout-sider {
+	color: #fff;
+	line-height: 120px;
+	background: #3ba0e9;
+}
+
+body {
+	margin: 0;
+}
+
+.ant-row-rtl .logo {
+	float: right;
+	margin: 16px 0 16px 24px;
+}
+.logo {
+	float: left;
+	color: white;
+}
+
+.center-upload {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	margin-top: 150px;
+	font-family: "Mulish", sans-serif;
+	text-transform: uppercase;
+	font-size: 44px;
+	line-height: normal;
+	text-align: center;
+	color: #373f41;
+	font-weight: 700;
+}
+
+.subTitle {
+	text-align: center;
+	font-family: "Mulish", sans-serif;
+	color: #373f41;
+	font-size: 14px;
+}
+
+.no-line-height {
+	line-height: normal;
+}
+
+.mtb25 {
+	margin: 25px 0;
+}
+
+.mtb45 {
+	margin: 45px 0;
 }
