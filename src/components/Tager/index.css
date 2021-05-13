@@ -1,0 +1,18 @@
+.Table {
+	max-height: "80vh";
+	width: 50vw;
+}
+
+@media (max-width: 800px) {
+	.Table {
+		max-height: "80vh";
+		width: 90vw;
+	}
+}
+
+@media (max-width: 1200px) {
+	.Table {
+		max-height: "80vh";
+		width: 70vw;
+	}
+}

@@ -35,7 +35,7 @@ export const Analise = () => {
 		);
 	}
 	return (
-		<Layout className="layout">
+		<Layout className="layout" style={{ minHeight: "100vh" }}>
 			<Content className="center">
 				<Tager data={data} />
 			</Content>

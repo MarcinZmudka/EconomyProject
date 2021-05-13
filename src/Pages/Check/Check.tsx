@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { Redirect, useParams } from "react-router";
-import { Spin, Space } from "antd";
+import { Spin, Space, Typography } from "antd";
 import "./index.css";
 import { Layout } from "antd";
 import { URL } from "../../Config";
@@ -12,7 +12,6 @@ export const Check = () => {
 	const { data, refetch } = useQuery("check", async () => {
 		const response = await fetch(`${URL}/api/v1/corpus/${id}`);
 		const res = await response.json();
-		console.log(res);
 		if (res.status === "PROCESSING") {
 			setTimeout(refetch, 2000);
 			return null;
@@ -26,6 +25,7 @@ export const Check = () => {
 		<Layout>
 			<Content className="spinnerBox">
 				<Space size="middle">
+					<Typography.Title level={3}>Processing</Typography.Title>
 					<Spin size="large" />
 				</Space>
 			</Content>
