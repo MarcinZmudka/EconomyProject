@@ -1,44 +1,44 @@
-import { Layout, Menu } from "antd";
-import { Upload, message, Button } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import { useQuery } from "react-query";
-import { useParams } from "react-router";
-import { URL } from "../../Config";
-import { Spin, Space } from "antd";
-import { Tager } from "../../components/Tager";
-const { Header, Footer, Sider, Content } = Layout;
+import { Layout, Radio } from "antd";
+import { createElement, useState } from "react";
+import { GetTager } from "../../components/GetTager";
+const { Header, Content } = Layout;
+
+const tools = ["Tager", "Topics", "Ner", "TermoPL"];
+
+const getComponent = (number: number) => {
+	switch (number) {
+		case 0:
+			return GetTager;
+		case 1:
+		case 2:
+		case 3:
+			return "div";
+		default:
+			return "div";
+	}
+};
 
 export const Analise = () => {
-	const { id } = useParams<{ id: string }>();
-	const { data, isLoading, refetch } = useQuery("analise", async () => {
-		const response = await fetch(
-			`${URL}/api/v1/analysis/tager?corpus_id=${id}`
-		);
-		if (response.status === 200) {
-			return response.json();
-		}
-		const { detail } = await response.json();
-		if (detail === "Not Found") {
-			setTimeout(refetch, 2000);
-		}
-		return response.json();
-	});
-	if (isLoading) {
-		return (
-			<Layout>
-				<Content className="spinnerBox">
-					<Space size="middle">
-						<Spin size="large" />
-					</Space>
-				</Content>
-			</Layout>
-		);
-	}
+	const [tool, setTool] = useState(0);
+
 	return (
 		<Layout className="layout" style={{ minHeight: "100vh" }}>
-			<Content className="center">
-				<Tager data={data} />
-			</Content>
+			<Header>
+				<div>
+					<Radio.Group value={tool}>
+						{tools.map((item, index) =>
+							createElement(Radio.Button, {
+								key: index,
+								type: index === tool ? "primary" : "default",
+								children: item,
+								value: index,
+								onClick: () => setTool(index),
+							})
+						)}
+					</Radio.Group>
+				</div>
+			</Header>
+			<Content className="center">{createElement(getComponent(tool))}</Content>
 		</Layout>
 	);
 };

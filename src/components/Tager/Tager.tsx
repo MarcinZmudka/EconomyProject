@@ -41,7 +41,6 @@ export const Tager: FC<{ data: dataType }> = ({ data }) => {
 			word: key,
 			speech: index % 2 ? "rzeczownik" : "czasownik",
 		}));
-	console.log(arrayOfResults);
 	return (
 		<div>
 			<Table className="Table" dataSource={arrayOfResults} columns={columns} />
