@@ -72,3 +72,7 @@ body {
 .mtb45 {
 	margin: 45px 0;
 }
+
+.layout {
+	min-height: 100vh !important;
+}
