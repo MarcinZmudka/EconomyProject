@@ -1,5 +1,6 @@
 import { Table } from "antd";
 import { FC } from "react";
+import { PieWrapper } from "../Pie";
 import "./index.css";
 
 type dataType = {
@@ -43,7 +44,16 @@ export const Tager: FC<{ data: dataType }> = ({ data }) => {
 		}));
 	return (
 		<div>
-			<Table className="Table" dataSource={arrayOfResults} columns={columns} />
+			<div className="center">
+				<Table
+					className="Table"
+					dataSource={arrayOfResults}
+					columns={columns}
+				/>
+			</div>
+			<div>
+				<PieWrapper results={arrayOfResults} />
+			</div>
 		</div>
 	);
 };
