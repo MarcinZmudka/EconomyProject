@@ -52,7 +52,7 @@ export const Upload = () => {
 					}}
 				/>
 				<Button onClick={() => ref.current?.click()} icon={<UploadOutlined />}>
-					Wgraj korpus wariacie
+					Wgraj korpus
 				</Button>
 			</div>
 			{id && (

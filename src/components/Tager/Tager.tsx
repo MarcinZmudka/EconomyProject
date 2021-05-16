@@ -1,7 +1,9 @@
 import { Table } from "antd";
 import { FC } from "react";
 import { PieWrapper } from "../Pie";
+import { Card, Col, Row } from "antd";
 import "./index.css";
+import { Summary } from "../Summary";
 
 type dataType = {
 	[key: string]: number;
@@ -44,7 +46,10 @@ export const Tager: FC<{ data: dataType }> = ({ data }) => {
 		}));
 	return (
 		<div>
-			<div className="center">
+			<div className="center mtb25">
+				<Summary data={arrayOfResults} />
+			</div>
+			<div className="center mtb25">
 				<Table
 					className="Table"
 					dataSource={arrayOfResults}

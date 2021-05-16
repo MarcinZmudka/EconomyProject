@@ -49,7 +49,7 @@ export const PieWrapper: FC<PieWrap> = ({ results }) => {
 	const [org, wzg] = getNumberOfSpeeches(results);
 	return (
 		<div>
-			<div style={{ display: "inline-block" }}>
+			<div style={{ display: "inline-block", width: "1000px" }}>
 				<div style={{ width: "49%", display: "inline-block" }}>
 					<Typography.Title level={3} className="center">
 						Wystąpienia części mowy

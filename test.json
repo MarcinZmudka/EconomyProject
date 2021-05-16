@@ -1,0 +1,15 @@
+{
+	"tager": [
+		{
+			"word": "kobieta",
+			"speech": "rzeczownik",
+			"number": 23
+		},
+		{
+			"word": "mężczyzna",
+			"speech": "rzeczownik",
+			"number": 26
+		},
+        ...
+	]
+}
