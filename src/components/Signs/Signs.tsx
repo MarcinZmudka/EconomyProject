@@ -1,7 +1,7 @@
 import { Typography } from "antd";
 import "./index.css";
 
-const names = ["Olga", "Kornel", "Paweł", "Filip", "Marcin"];
+// const names = ["Olga", "Kornel", "Paweł", "Filip", "Marcin"];
 
 export const Signs = () => {
 	return (

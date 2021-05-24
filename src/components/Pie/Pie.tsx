@@ -1,7 +1,8 @@
 import { Typography } from "antd";
 import { FC } from "react";
 import { Pie } from "react-chartjs-2";
-import { PieWrap, Results, SpeechObj } from "./types.intefaces";
+import { TagerType } from "../GetTager";
+import { SpeechObj } from "./types.intefaces";
 
 const getData = (results: SpeechObj) => ({
 	labels: Object.keys(results),
@@ -30,22 +31,22 @@ const getData = (results: SpeechObj) => ({
 	],
 });
 
-const getNumberOfSpeeches = (results: Results[]) => {
+const getNumberOfSpeeches = (results: TagerType) => {
 	const org = {} as SpeechObj;
 	const wzg = {} as SpeechObj;
-	results.forEach(({ speech, number }) => {
+	results.forEach(({ speech, count }) => {
 		if (org[speech]) {
 			org[speech].value++;
-			wzg[speech].value += number;
+			wzg[speech].value += count;
 		} else {
 			org[speech] = { type: speech, value: 1 };
-			wzg[speech] = { type: speech, value: number };
+			wzg[speech] = { type: speech, value: count };
 		}
 	});
 	return [org, wzg];
 };
 
-export const PieWrapper: FC<PieWrap> = ({ results }) => {
+export const PieWrapper: FC<{ results: TagerType }> = ({ results }) => {
 	const [org, wzg] = getNumberOfSpeeches(results);
 	return (
 		<div>

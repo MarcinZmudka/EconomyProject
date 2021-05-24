@@ -1,11 +1,11 @@
 import { Table } from "antd";
 import { FC } from "react";
 import { PieWrapper } from "../Pie";
-import { Card, Col, Row } from "antd";
 import "./index.css";
 import { Summary } from "../Summary";
+import { TagerType } from "../GetTager";
 
-type dataType = {
+export type dataType = {
 	[key: string]: number;
 };
 
@@ -21,43 +21,36 @@ const columns = [
 		dataIndex: "speech",
 		key: "speech",
 		filters: [
-			{ text: "czasownik", value: "czasownik" },
+			{ text: "przymiotnik", value: "przymiotnik" },
 			{ text: "rzeczownik", value: "rzeczownik" },
+			{ text: "przysłówek", value: "przysłówek" },
 		],
 		onFilter: (value: any, record: any) => record.speech.indexOf(value) === 0,
 	},
 	{
 		title: "Liczba",
-		dataIndex: "number",
-		key: "number",
-		sorter: (a: any, b: any) => b.number - a.number,
+		dataIndex: "count",
+		key: "count",
+		sorter: (a: any, b: any) => b.count - a.count,
 		sortDirections: ["descend"] as ["ascend" | "descend"],
 	},
 ];
 
-export const Tager: FC<{ data: dataType }> = ({ data }) => {
-	const arrayOfResults = Object.entries(data)
-		.sort((a, b) => b[1] - a[1])
-		.map(([key, number], index) => ({
-			key,
-			number,
-			word: key,
-			speech: index % 2 ? "rzeczownik" : "czasownik",
-		}));
+export const Tager: FC<{ data: TagerType }> = ({ data }) => {
 	return (
 		<div>
 			<div className="center mtb25">
-				<Summary data={arrayOfResults} />
+				<Summary data={data} />
 			</div>
 			<div className="center mtb25">
 				<Table
 					className="Table"
-					dataSource={arrayOfResults}
+					dataSource={data.map((item) => ({ ...item, key: item.word }))}
 					columns={columns}
 				/>
 			</div>
 			<div>
-				<PieWrapper results={arrayOfResults} />
+				<PieWrapper results={data} />
 			</div>
 		</div>
 	);

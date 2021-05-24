@@ -1,25 +1,18 @@
 import { Card, Typography } from "antd";
 import { FC } from "react";
+import { TagerType } from "../GetTager";
 
-type Summ = {
-	data: {
-		key: string;
-		number: number;
-		word: string;
-		speech: string;
-	}[];
-};
 type speechObjType = {
 	[key: string]: number;
 };
-export const Summary: FC<Summ> = ({ data }) => {
-	const numberOfWords = data.reduce((prev, { number }) => prev + number, 0);
+export const Summary: FC<{ data: TagerType }> = ({ data }) => {
+	const numberOfWords = data.reduce((prev, { count }) => prev + count, 0);
 	const speechObj = {} as speechObjType;
-	data.forEach(({ speech, number }) => {
+	data.forEach(({ speech, count }) => {
 		if (!speechObj[speech]) {
-			return (speechObj[speech] = number);
+			return (speechObj[speech] = count);
 		}
-		speechObj[speech] += number;
+		speechObj[speech] += count;
 	});
 	return (
 		<Card
@@ -29,6 +22,7 @@ export const Summary: FC<Summ> = ({ data }) => {
 			style={{ width: "400px" }}
 		>
 			<Typography>{`Liczba słów: ${numberOfWords}`}</Typography>
+			<Typography>{`Liczba unikalnych słów: ${data.length}`}</Typography>
 			{Object.entries(speechObj).map(([speech, number]) => {
 				return (
 					<Typography

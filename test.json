@@ -1,15 +1,13 @@
 {
-	"tager": [
+	"tager": ...,
+	"ner": [
 		{
-			"word": "kobieta",
-			"speech": "rzeczownik",
-			"number": 23
+			"word": "Mieszkam",
+			"original": "mieszkac",
+			"category": "name_loc",
+			"unique": false, // nazwa wlasna - true, reszta false,
+			"speech": ["pl", "subst", "m3", "f"]
 		},
-		{
-			"word": "mężczyzna",
-			"speech": "rzeczownik",
-			"number": 26
-		},
-        ...
+		...
 	]
 }
