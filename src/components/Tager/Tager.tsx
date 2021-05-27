@@ -1,6 +1,6 @@
 import { Table } from "antd";
 import { FC } from "react";
-import { PieWrapper } from "../Pie";
+import { PieWrapperTager } from "../Pie";
 import "./index.css";
 import { Summary } from "../Summary";
 import { TagerType } from "../GetTager";
@@ -50,7 +50,7 @@ export const Tager: FC<{ data: TagerType }> = ({ data }) => {
 				/>
 			</div>
 			<div>
-				<PieWrapper results={data} />
+				<PieWrapperTager results={data} />
 			</div>
 		</div>
 	);

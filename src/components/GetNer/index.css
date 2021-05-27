@@ -1,0 +1,15 @@
+.PieBox {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.Pie {
+	min-width: 300px;
+	width: 40vw;
+}
+
+.VerticalBar {
+	max-width: 90vw;
+	width: 90vw;
+}

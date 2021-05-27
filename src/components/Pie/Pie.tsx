@@ -4,19 +4,24 @@ import { Pie } from "react-chartjs-2";
 import { TagerType } from "../GetTager";
 import { SpeechObj } from "./types.intefaces";
 
-const getData = (results: SpeechObj) => ({
+export const getData = (results: Record<string, any>) => ({
 	labels: Object.keys(results),
 	datasets: [
 		{
 			label: "# of Votes",
-			data: Object.values(results).map(({ value }) => value),
+			data: Object.values(results).map((item) =>
+				item.value ? item.value : item
+			),
 			backgroundColor: [
 				"rgba(255, 99, 132, 0.2)",
 				"rgba(54, 162, 235, 0.2)",
-				"rgba(255, 206, 86, 0.2)",
+				"rgba(255, 206, 286, 0.2)",
 				"rgba(75, 192, 192, 0.2)",
 				"rgba(153, 102, 255, 0.2)",
 				"rgba(255, 159, 64, 0.2)",
+				"rgba(155, 259, 64, 0.2)",
+				"rgba(155, 159, 164, 0.2)",
+				"rgba(55, 229, 74, 0.2)",
 			],
 			borderColor: [
 				"rgba(255, 99, 132, 1)",
@@ -25,6 +30,9 @@ const getData = (results: SpeechObj) => ({
 				"rgba(75, 192, 192, 1)",
 				"rgba(153, 102, 255, 1)",
 				"rgba(255, 159, 64, 1)",
+				"rgba(155, 259, 64, 1)",
+				"rgba(155, 159, 164, 1)",
+				"rgba(55, 229, 74, 1)",
 			],
 			borderWidth: 1,
 		},
@@ -46,7 +54,7 @@ const getNumberOfSpeeches = (results: TagerType) => {
 	return [org, wzg];
 };
 
-export const PieWrapper: FC<{ results: TagerType }> = ({ results }) => {
+export const PieWrapperTager: FC<{ results: TagerType }> = ({ results }) => {
 	const [org, wzg] = getNumberOfSpeeches(results);
 	return (
 		<div>
@@ -65,6 +73,23 @@ export const PieWrapper: FC<{ results: TagerType }> = ({ results }) => {
 					<Pie data={getData(wzg)} type={""} />
 				</div>
 			</div>
+		</div>
+	);
+};
+
+type PieData = {
+	value: Record<string, any>;
+	title: string;
+	className: string;
+};
+
+export const PieWrapper: FC<PieData> = ({ value, title, className }) => {
+	return (
+		<div className={className}>
+			<Typography.Title level={3} className="center">
+				{title}
+			</Typography.Title>
+			<Pie data={getData(value)} type={""} />
 		</div>
 	);
 };

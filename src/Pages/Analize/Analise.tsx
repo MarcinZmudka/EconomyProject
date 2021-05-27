@@ -1,5 +1,6 @@
 import { Layout, Radio } from "antd";
 import { createElement, useState } from "react";
+import { GetNer } from "../../components/GetNer";
 import { GetTager } from "../../components/GetTager";
 const { Header, Content } = Layout;
 
@@ -9,8 +10,9 @@ const getComponent = (number: number) => {
 	switch (number) {
 		case 0:
 			return GetTager;
-		case 1:
 		case 2:
+			return GetNer;
+		case 1:
 		case 3:
 			return "div";
 		default:
