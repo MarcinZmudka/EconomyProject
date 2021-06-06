@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Redirect, useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Spin, Space, Typography } from "antd";
 import "./index.css";
 import { Layout } from "antd";
@@ -8,6 +8,7 @@ import { URL } from "../../Config";
 const { Content } = Layout;
 
 export const Check = () => {
+	const history = useHistory();
 	const { id } = useParams<{ id: string }>();
 	const { data, refetch } = useQuery("check", async () => {
 		const response = await fetch(`${URL}/api/v1/corpus/${id}`);
@@ -16,10 +17,18 @@ export const Check = () => {
 			setTimeout(refetch, 2000);
 			return null;
 		}
-		return res;
+		return res.filters;
 	});
+	console.log({ data });
 	if (data) {
-		return <Redirect to={`/analise/${id}`} />;
+		fetch(`${URL}/api/v1/analysis/?corpus_id=${id}`, {
+			method: "POST",
+			body: JSON.stringify({ options: {}, filter_boundaries: data }),
+		})
+			.then((res) => res.json())
+			.then((item) => {
+				history.push(`/analise/${item.corpus_id}/${item.id}`);
+			});
 	}
 	return (
 		<Layout>

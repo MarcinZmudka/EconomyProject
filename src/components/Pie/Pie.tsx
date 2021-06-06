@@ -80,7 +80,7 @@ export const PieWrapperTager: FC<{ results: TagerType }> = ({ results }) => {
 type PieData = {
 	value: Record<string, any>;
 	title: string;
-	className: string;
+	className?: string;
 };
 
 export const PieWrapper: FC<PieData> = ({ value, title, className }) => {

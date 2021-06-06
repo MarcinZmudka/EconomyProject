@@ -76,3 +76,10 @@ body {
 .layout {
 	min-height: 100vh !important;
 }
+
+.mlr25 {
+	margin: 0 25px;
+}
+.mlr15 {
+	margin: 0 15px;
+}

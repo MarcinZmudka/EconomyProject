@@ -17,7 +17,7 @@ export const Routes = () => {
 				<Route path="/main">
 					<Landing />
 				</Route>
-				<Route path="/analise/:id">
+				<Route path="/analise/:corpus/:id">
 					<QueryClientProvider client={client}>
 						<Analise />
 					</QueryClientProvider>

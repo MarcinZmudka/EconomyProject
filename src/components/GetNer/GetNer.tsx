@@ -1,8 +1,3 @@
-import { Layout } from "antd";
-import { useQuery } from "react-query";
-import { useParams } from "react-router";
-import { Spin, Space } from "antd";
-import { URL } from "../../Config";
 import { AllGroups } from "./interfaces";
 import {
 	countAllTypes,
@@ -13,8 +8,7 @@ import { PieWrapper } from "../Pie";
 import "./index.css";
 import VerticalBar from "../Bar/Bar";
 import { NerTable } from "../NerTable";
-
-const { Content } = Layout;
+import { FC } from "react";
 
 export type NerType = {
 	word: string[];
@@ -23,40 +17,14 @@ export type NerType = {
 	speech: AllGroups[]; //"rzeczownik" | "przysłówek" | "przymiotnik";
 	count: number;
 };
-export const GetNer = () => {
-	const { id } = useParams<{ id: string }>();
-	const { data, isLoading, refetch } = useQuery<NerType[]>("ner", async () => {
-		const response = await fetch(`${URL}/api/v1/analysis/ner?corpus_id=${id}`, {
-			method: "POST",
-		});
-		if (response.status === 200) {
-			return response.json();
-		}
-		const { detail } = await response.json();
-		if (detail === "Not Found") {
-			setTimeout(refetch, 2000);
-		}
-		return response.json();
-	});
-	if (isLoading) {
-		return (
-			<Content className="spinnerBox">
-				<Space size="middle">
-					<Spin size="large" />
-				</Space>
-			</Content>
-		);
-	}
-	if (!data) {
-		return <div>A</div>;
-	}
-	const allTypes = countAllTypes(data as NerType[]);
-	const categoriesCount = summaryCategory(data as NerType[]);
+export const GetNer: FC<{ value: NerType[] }> = ({ value }) => {
+	const allTypes = countAllTypes(value);
+	const categoriesCount = summaryCategory(value);
 	const groupedTypes = groupTypes(allTypes);
 	console.log({ allTypes, categoriesCount, groupedTypes });
 	return (
 		<>
-			<NerTable value={data as NerType[]} />
+			<NerTable value={value} />
 			<VerticalBar
 				value={allTypes}
 				title="Zestawienie części mowy"
