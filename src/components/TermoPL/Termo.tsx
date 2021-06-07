@@ -1,8 +1,9 @@
 import { LineChart } from "../LineChart";
 import { PieWrapper } from "../Pie";
+import { TermoTable } from "../TermoTable";
 import data from "./data.json";
 
-type TermoType = {
+export type TermoType = {
 	word: string;
 	base: string;
 	rank: number;
@@ -64,6 +65,9 @@ const countFreq = (termo: TermoType[]) => {
 export const Termo = () => {
 	return (
 		<>
+			<div>
+				<TermoTable value={data} />
+			</div>
 			<div>
 				<PieWrapper
 					title="Stosunek wystąpień do długości"

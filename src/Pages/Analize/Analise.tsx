@@ -10,7 +10,7 @@ import { Termo } from "../../components/TermoPL";
 import { URL } from "../../Config";
 const { Header, Content } = Layout;
 
-const tools = ["Tager", "Topics", "Ner", "TermoPL"];
+const tools = ["Tager", "Ner", "TermoPL"];
 
 const getComponent = (number: number): [FC<any>, string] => {
 	switch (number) {
