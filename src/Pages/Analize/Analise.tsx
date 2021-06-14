@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import { DrawerWrapper } from "../../components/Drawer";
 import { GetNer, NerType } from "../../components/GetNer";
 import { GetTager, TagerType } from "../../components/GetTager";
-import { Termo } from "../../components/TermoPL";
+import { Termo, TermoType } from "../../components/TermoPL";
 import { URL } from "../../Config";
 const { Header, Content } = Layout;
 
@@ -16,12 +16,10 @@ const getComponent = (number: number): [FC<any>, string] => {
 	switch (number) {
 		case 0:
 			return [GetTager, "tagger"];
-		case 2:
-			return [GetNer, "ner"];
-		case 3:
-			return [Termo, "termo"];
 		case 1:
-			return [Termo, "tager"];
+			return [GetNer, "ner"];
+		case 2:
+			return [Termo, "termopl"];
 		default:
 			return [Termo, "ner"];
 	}
@@ -30,6 +28,7 @@ type Results = {
 	[key: string]: any;
 	tagger: TagerType;
 	ner: NerType;
+	termopl: TermoType[];
 };
 export const Analise = () => {
 	const [tool, setTool] = useState(0);

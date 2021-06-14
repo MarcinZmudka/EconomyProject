@@ -1,4 +1,4 @@
-import { DownloadOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import {
 	Drawer,
 	Typography,
@@ -70,7 +70,13 @@ export const DrawerWrapper: FC<DrawerType> = ({ open, onClose }) => {
 		const response = (await res.json()) as { id: string };
 		history.push(`/analise/${corpus}/${response.id}`);
 	};
-	console.log({ state });
+	const reset = () => {
+		const x = {} as Record<string, Filters>;
+		Object.entries(data).forEach(([key, value]) => {
+			x[key] = { ...value };
+		});
+		setState(x);
+	};
 	return (
 		<Drawer
 			title="Filtrowanko"
@@ -83,9 +89,17 @@ export const DrawerWrapper: FC<DrawerType> = ({ open, onClose }) => {
 				<Button
 					type="primary"
 					shape="round"
-					icon={<DownloadOutlined />}
+					icon={<SearchOutlined />}
 					size="large"
 					onClick={filter}
+				/>
+				<Button
+					type="primary"
+					shape="round"
+					danger
+					icon={<CloseOutlined />}
+					size="large"
+					onClick={reset}
 				/>
 			</Space>
 		</Drawer>
@@ -171,7 +185,6 @@ const DateWrapper: FC<Wrapper> = ({ handleChange, className, id, value }) => {
 				Wybierz zakres dat
 			</Typography.Title>
 			<RangePicker
-			
 				value={[
 					moment((value as DateFilter).first, "YYYY-MM-DD"),
 					moment((value as DateFilter).last, "YYYY-MM-DD"),

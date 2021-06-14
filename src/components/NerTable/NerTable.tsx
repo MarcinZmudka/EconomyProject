@@ -43,7 +43,7 @@ const columns = [
 export const NerTable: FC<{ value: NerType[] }> = ({ value }) => {
 	const data = value.map((item) => {
 		const speech = new Set(item.speech);
-		return { ...item, speech: Array.from(speech) };
+		return { ...item, speech: Array.from(speech), key: item.base };
 	});
 	return (
 		<div className="nerTable mtb25">

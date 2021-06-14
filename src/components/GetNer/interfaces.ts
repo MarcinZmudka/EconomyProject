@@ -32,6 +32,7 @@ export type GroupObj = {
 };
 
 export const NumberGroupConstant = ["sg", "pl"];
+export const NumberGroupConstantT = ["l.poj.", "l.mn."];
 export const CaseGroupConstant = [
 	"nom",
 	"gen",
@@ -41,16 +42,42 @@ export const CaseGroupConstant = [
 	"loc",
 	"voc",
 ];
+export const CaseGroupConstantT = [
+	"mianownik",
+	"dopełniacz",
+	"biernik",
+	"celownik",
+	"narzędnik",
+	"miejscownik",
+	"wołacz",
+];
 export const GenderGroupConstant = ["m1", "m2", "m3", "f", "n"];
+export const GenderGroupConstantT = ["m1", "m2", "m3", "żeński", "nijaki"];
 export const PersonGroupConstant = ["pri", "sec", "ter"];
+export const PersonGroupConstantT = ["os.pierwsza", "os.druga", "os.trzecia"];
 export const DeegreeGroupConstant = ["pos", "com", "sup"];
+export const DeegreeGroupConstantT = [
+	"st.podstawowy",
+	"st.wyższy",
+	"st.najwyższy",
+];
 export const AspectGroupConstant = ["imperf", "perf"];
+export const AspectGroupConstantT = ["niedokonany", "dokonany"];
+
 export const NegationGroupConstant = ["aff", "neg"];
+export const NegationGroupConstantT = ["aff", "neg"];
+
 export const AccentabilityGroupConstant = ["akc", "nakc"];
+export const AccentabilityGroupConstantT = ["silny akcent", "słaby akcent"];
+
 export const PostPreGroupConstant = ["praep", "npraep"];
+
 export const AccGroupConstant = ["congr", "rec"];
+
 export const AggGroupConstant = ["nagl", "agl"];
+
 export const VocGroupConstant = ["wok", "nwok"];
+
 export const FullstoGroupConstant = ["pun", "npun"];
 
 export const AllGroupsConstant = {

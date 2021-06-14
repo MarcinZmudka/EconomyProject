@@ -1,3 +1,9 @@
+# Projekt ZIGW
+
+## URL
+
+Aby zmiennić url backendu wejdź w plik `src/Config/url.ts` i ustaw adres backendu.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

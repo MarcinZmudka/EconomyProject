@@ -12,13 +12,18 @@ const columns = [
 		dataIndex: "word",
 		key: "word",
 		width: "20%",
-		sorter: (a: any, b: any) => a.word.localeCompare(b.word),
+		sorter: (a: TermoType, b: TermoType) =>
+			a.word
+				.reduce((prev, curr) => `${prev} ${curr}`)
+				.localeCompare(b.word.reduce((prev, curr) => `${prev} ${curr}`)),
 		sortDirections: ["ascend", "descend"] as ["ascend", "descend"],
+		render: (text: any, record: TermoType) =>
+			record.word.reduce((prev, curr) => `${prev} ${curr}`),
 	},
 	{
 		title: "Baza",
-		dataIndex: "base",
-		key: "base",
+		dataIndex: "original",
+		key: "original",
 		width: "20%",
 	},
 	{
@@ -30,19 +35,19 @@ const columns = [
 		width: "20%",
 	},
 	{
-		title: "freq_s",
-		dataIndex: "freq_s",
-		key: "freq_s",
+		title: "Ranking",
+		dataIndex: "rank",
+		key: "rank",
 		width: "20%",
-		sorter: (a: any, b: any) => b.freq_s - a.freq_s,
+		sorter: (a: any, b: any) => b.rank - a.rank,
 		sortDirections: ["ascend", "descend"] as ["ascend", "descend"],
 	},
 	{
-		title: "freq_in",
-		dataIndex: "freq_in",
-		key: "freq_in",
+		title: "Długość",
+		dataIndex: "length",
+		key: "length",
 		width: "20%",
-		sorter: (a: any, b: any) => b.freq_in - a.freq_in,
+		sorter: (a: any, b: any) => b.length - a.length,
 		sortDirections: ["ascend", "descend"] as ["ascend", "descend"],
 	},
 ];
@@ -50,7 +55,11 @@ const columns = [
 export const TermoTable: FC<{ value: TermoType[] }> = ({ value }) => {
 	return (
 		<div className="nerTable mtb25">
-			<Table className="fullWidth" columns={columns} dataSource={value} />
+			<Table
+				className="fullWidth"
+				columns={columns}
+				dataSource={value.map((item) => ({ ...item, key: item.original }))}
+			/>
 		</div>
 	);
 };

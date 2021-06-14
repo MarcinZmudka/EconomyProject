@@ -21,7 +21,6 @@ export const GetNer: FC<{ value: NerType[] }> = ({ value }) => {
 	const allTypes = countAllTypes(value);
 	const categoriesCount = summaryCategory(value);
 	const groupedTypes = groupTypes(allTypes);
-	console.log({ allTypes, categoriesCount, groupedTypes });
 	return (
 		<>
 			<NerTable value={value} />
